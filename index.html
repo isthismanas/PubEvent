@@ -26,6 +26,8 @@
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
   <div class="ambient ambient-three" aria-hidden="true"></div>
+  <div class="ambient ambient-four" aria-hidden="true"></div>
+  <div class="ambient ambient-five" aria-hidden="true"></div>
   <div class="page-shell">
     <header class="hero">
       <p class="eyebrow">MiTSA Events Presents</p>
@@ -167,10 +169,12 @@
   <script>
     const root = document.documentElement;
     const panels = document.querySelectorAll(".interactive-panel");
+    const venueCoords = [-34.9247174, 138.6021924];
+    const displayCenter = [-34.9247174, 138.6048];
     const venueMap = L.map("venue-map", {
       zoomControl: false,
       scrollWheelZoom: true,
-    }).setView([-34.9247174, 138.6021924], 17);
+    }).setView(displayCenter, 17);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
@@ -184,9 +188,8 @@
       iconAnchor: [14, 28],
     });
 
-    L.marker([-34.9247174, 138.6021924], { icon: venueIcon })
-      .addTo(venueMap)
-      .bindPopup("EL Mexicano Kitchen & Bar");
+    const marker = L.marker(venueCoords, { icon: venueIcon, zIndexOffset: 1000 })
+      .addTo(venueMap);
 
     L.control.zoom({ position: "topright" }).addTo(venueMap);
 

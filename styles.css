@@ -44,6 +44,7 @@ body::before {
     radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.26), transparent 18%);
   mix-blend-mode: screen;
   opacity: 0.55;
+  animation: shimmer 16s linear infinite;
 }
 
 .ambient {
@@ -80,6 +81,24 @@ body::before {
   height: 10rem;
   background: rgba(247, 178, 103, 0.24);
   animation-duration: 16s;
+}
+
+.ambient-four {
+  top: 18%;
+  right: 18%;
+  width: 8rem;
+  height: 8rem;
+  background: rgba(255, 255, 255, 0.24);
+  animation-duration: 14s;
+}
+
+.ambient-five {
+  bottom: 18%;
+  right: -2rem;
+  width: 14rem;
+  height: 14rem;
+  background: rgba(217, 93, 57, 0.14);
+  animation-duration: 20s;
 }
 
 .page-shell {
@@ -360,24 +379,39 @@ main {
 .venue-marker span {
   position: relative;
   display: block;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
   background: linear-gradient(135deg, var(--accent-dark), var(--accent));
   box-shadow: 0 14px 28px rgba(217, 93, 57, 0.32);
   transform-origin: center;
+  animation: pin-bob 1.8s ease-in-out infinite;
 }
 
 .venue-marker span::after {
   content: "";
   position: absolute;
-  top: 7px;
-  left: 7px;
-  width: 14px;
-  height: 14px;
+  top: 8px;
+  left: 8px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #fff8f0;
+}
+
+.venue-marker::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(217, 93, 57, 0.18);
+  border: 2px solid rgba(217, 93, 57, 0.35);
+  transform: translate(-50%, -50%);
+  animation: halo-pulse 2s ease-out infinite;
 }
 
 .location-map-card::after {
@@ -503,6 +537,20 @@ article p {
   }
 }
 
+@keyframes shimmer {
+  0% {
+    transform: translate3d(-2%, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(2%, -1%, 0);
+  }
+
+  100% {
+    transform: translate3d(-2%, 0, 0);
+  }
+}
+
 @keyframes hero-sheen {
   0%,
   70%,
@@ -537,5 +585,28 @@ article p {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes pin-bob {
+  0%,
+  100% {
+    transform: rotate(-45deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(-45deg) translateY(-4px);
+  }
+}
+
+@keyframes halo-pulse {
+  0% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.8);
   }
 }
