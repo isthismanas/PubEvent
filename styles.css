@@ -235,6 +235,114 @@ main {
     var(--panel);
 }
 
+.location-card {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.95fr) minmax(280px, 1.05fr);
+  gap: 1rem;
+}
+
+.location-visual,
+.location-copy {
+  border-radius: 22px;
+  border: 1px solid rgba(20, 33, 61, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.location-visual {
+  position: relative;
+  min-height: 260px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(240, 212, 165, 0.9), rgba(255, 248, 240, 0.95));
+}
+
+.location-visual::before,
+.location-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.location-visual::before {
+  background:
+    linear-gradient(rgba(20, 33, 61, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 33, 61, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.7;
+}
+
+.location-visual::after {
+  background:
+    radial-gradient(circle at 18% 24%, rgba(217, 93, 57, 0.18), transparent 0 18%),
+    radial-gradient(circle at 82% 72%, rgba(20, 33, 61, 0.1), transparent 0 16%);
+}
+
+.map-dot {
+  position: absolute;
+  top: 28%;
+  left: 56%;
+  width: 26px;
+  height: 26px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: var(--accent);
+  box-shadow: 0 10px 30px rgba(217, 93, 57, 0.28);
+  z-index: 1;
+}
+
+.map-dot::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff8f0;
+}
+
+.map-line {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(20, 33, 61, 0.14);
+}
+
+.map-line-one {
+  top: 18%;
+  left: 16%;
+  width: 46%;
+  height: 10px;
+  transform: rotate(18deg);
+}
+
+.map-line-two {
+  top: 52%;
+  left: 22%;
+  width: 54%;
+  height: 12px;
+  transform: rotate(-21deg);
+}
+
+.map-line-three {
+  top: 68%;
+  left: 40%;
+  width: 30%;
+  height: 10px;
+  transform: rotate(32deg);
+}
+
+.location-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.4rem;
+}
+
+.location-copy p {
+  margin: 0;
+}
+
 article p {
   margin: 0;
   line-height: 1.65;
@@ -274,6 +382,10 @@ article p {
   .footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .location-card {
+    grid-template-columns: 1fr;
   }
 
   h1 {
