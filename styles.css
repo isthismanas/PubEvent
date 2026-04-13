@@ -484,6 +484,68 @@ article p a:hover {
   text-decoration: underline;
 }
 
+.contact-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: 16px;
+  text-decoration: none;
+  background: rgba(20, 33, 61, 0.04);
+  border: 1px solid rgba(20, 33, 61, 0.08);
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-2px);
+  background: rgba(217, 93, 57, 0.08);
+  border-color: rgba(217, 93, 57, 0.2);
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: rgba(217, 93, 57, 0.14);
+  color: var(--accent-dark);
+}
+
+.contact-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+
+.contact-copy {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.contact-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.contact-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;

@@ -148,15 +148,44 @@
             <p>Tickets are handled on your external platform. This page exists to inform and convert.</p>
           </article>
           <article>
-            <h3>Where should updates go?</h3>
-            <p>
-              Follow
-              <a href="https://www.instagram.com/mastersintechnology/" target="_blank" rel="noreferrer">@mastersintechnology</a>,
-              email
-              <a href="mailto:mitsa@clubs.youx.org.au">mitsa@clubs.youx.org.au</a>,
-              or visit
-              <a href="https://www.mitsa.tech/" target="_blank" rel="noreferrer">mitsa.tech</a>.
-            </p>
+            <h3>Contact Us</h3>
+            <div class="contact-list">
+              <a class="contact-item" href="https://www.instagram.com/mastersintechnology/" target="_blank" rel="noreferrer">
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.8A2.7 2.7 0 0 0 4.8 7.5v9a2.7 2.7 0 0 0 2.7 2.7h9a2.7 2.7 0 0 0 2.7-2.7v-9a2.7 2.7 0 0 0-2.7-2.7Zm4.5 2.7a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm0 1.8a2.7 2.7 0 1 0 0 5.4 2.7 2.7 0 0 0 0-5.4Zm5.1-2.25a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1Z"/>
+                  </svg>
+                </span>
+                <span class="contact-copy">
+                  <span class="contact-label">Instagram</span>
+                  <span class="contact-value">@mastersintechnology</span>
+                </span>
+              </a>
+
+              <a class="contact-item" href="mailto:mitsa@clubs.youx.org.au">
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M3 6.75A2.25 2.25 0 0 1 5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75v10.5A2.25 2.25 0 0 1 18.75 19.5H5.25A2.25 2.25 0 0 1 3 17.25Zm2.03-.45 6.51 5.12a.75.75 0 0 0 .92 0l6.51-5.12H5.03Zm14.17 1.49-6.05 4.76a2.55 2.55 0 0 1-3.15 0L3.95 7.79v9.46c0 .25.2.45.45.45h15.3c.25 0 .45-.2.45-.45Z"/>
+                  </svg>
+                </span>
+                <span class="contact-copy">
+                  <span class="contact-label">Email</span>
+                  <span class="contact-value">mitsa@clubs.youx.org.au</span>
+                </span>
+              </a>
+
+              <a class="contact-item" href="https://www.mitsa.tech/" target="_blank" rel="noreferrer">
+                <span class="contact-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18Zm5.85 8.25h-2.23a14.8 14.8 0 0 0-1.01-4.05 7.23 7.23 0 0 1 3.24 4.05ZM12 4.8c.66 0 1.76 1.52 2.24 4.45H9.76C10.24 6.32 11.34 4.8 12 4.8Zm-2.61.4a14.8 14.8 0 0 0-1.01 4.05H6.15A7.23 7.23 0 0 1 9.39 5.2Zm-3.24 7.8h2.23c.11 1.43.46 2.82 1.01 4.05A7.23 7.23 0 0 1 6.15 13Zm3.61 0h4.48c-.48 2.93-1.58 4.45-2.24 4.45-.66 0-1.76-1.52-2.24-4.45Zm4.85 4.05c.55-1.23.9-2.62 1.01-4.05h2.23a7.23 7.23 0 0 1-3.24 4.05Z"/>
+                  </svg>
+                </span>
+                <span class="contact-copy">
+                  <span class="contact-label">Website</span>
+                  <span class="contact-value">mitsa.tech</span>
+                </span>
+              </a>
+            </div>
           </article>
         </div>
       </section>
@@ -187,7 +216,7 @@
       scrollWheelZoom: true,
       dragging: true,
       tap: true,
-    });
+    }).setView(displayCenter, 17);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
@@ -205,7 +234,7 @@
       .addTo(venueMap);
 
     L.control.zoom({ position: "topright" }).addTo(venueMap);
-    venueMap.whenReady(() => {
+    window.addEventListener("load", () => {
       venueMap.invalidateSize();
       venueMap.setView(displayCenter, 17, { animate: false });
     });
