@@ -474,6 +474,16 @@ article p {
   color: var(--ink-soft);
 }
 
+article p a {
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+article p a:hover {
+  text-decoration: underline;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
@@ -482,6 +492,13 @@ article p {
   margin-top: 1.25rem;
   padding: 1rem 1.4rem;
   border-radius: 20px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1rem;
 }
 
 .footer p,
@@ -507,6 +524,10 @@ article p {
   .footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
   }
 
   .location-map-card {
