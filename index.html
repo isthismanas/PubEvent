@@ -14,7 +14,13 @@
     href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap"
     rel="stylesheet"
   >
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  >
+  <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
   <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -98,13 +104,11 @@
 
       <section class="panel location-panel">
         <div class="location-map-card">
-          <iframe
+          <div
             class="location-embed"
-            title="Map showing EL Mexicano Kitchen & Bar"
-            src="https://www.google.com/maps?q=EL%20Mexicano%20Kitchen%20%26%20Bar%2C%20Adelaide&z=17&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+            id="venue-map"
+            aria-label="Interactive map showing EL Mexicano Kitchen & Bar"
+          ></div>
 
           <div class="location-overlay">
             <p class="location-tag">Starting Venue</p>
@@ -155,9 +159,36 @@
     </footer>
   </div>
 
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
   <script>
     const root = document.documentElement;
     const panels = document.querySelectorAll(".interactive-panel");
+    const venueMap = L.map("venue-map", {
+      zoomControl: false,
+      scrollWheelZoom: true,
+    }).setView([-34.9247174, 138.6021924], 17);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors',
+    }).addTo(venueMap);
+
+    const venueIcon = L.divIcon({
+      className: "venue-marker",
+      html: "<span></span>",
+      iconSize: [28, 28],
+      iconAnchor: [14, 28],
+    });
+
+    L.marker([-34.9247174, 138.6021924], { icon: venueIcon })
+      .addTo(venueMap)
+      .bindPopup("EL Mexicano Kitchen & Bar");
+
+    L.control.zoom({ position: "topright" }).addTo(venueMap);
 
     window.addEventListener("pointermove", (event) => {
       const x = (event.clientX / window.innerWidth) * 100;
