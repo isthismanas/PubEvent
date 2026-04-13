@@ -185,7 +185,9 @@
     const venueMap = L.map("venue-map", {
       zoomControl: false,
       scrollWheelZoom: true,
-    }).setView(displayCenter, 17);
+      dragging: true,
+      tap: true,
+    });
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
@@ -203,6 +205,10 @@
       .addTo(venueMap);
 
     L.control.zoom({ position: "topright" }).addTo(venueMap);
+    venueMap.whenReady(() => {
+      venueMap.invalidateSize();
+      venueMap.setView(displayCenter, 17, { animate: false });
+    });
 
     window.addEventListener("pointermove", (event) => {
       const x = (event.clientX / window.innerWidth) * 100;
