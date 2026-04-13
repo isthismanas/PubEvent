@@ -11,6 +11,9 @@
   --shadow: 0 24px 60px rgba(20, 33, 61, 0.14);
   --pointer-x: 50%;
   --pointer-y: 50%;
+  --scroll-progress: 0;
+  --scroll-shift: 0px;
+  --scroll-tilt: 0deg;
 }
 
 * {
@@ -31,6 +34,7 @@ body {
     radial-gradient(circle at top left, rgba(217, 93, 57, 0.18), transparent 28%),
     radial-gradient(circle at right 15%, rgba(20, 33, 61, 0.12), transparent 22%),
     linear-gradient(145deg, #f8f1e5 0%, #f4eadb 40%, #f8f4ec 100%);
+  background-attachment: fixed;
   overflow-x: hidden;
 }
 
@@ -45,6 +49,17 @@ body::before {
   mix-blend-mode: screen;
   opacity: 0.55;
   animation: shimmer 16s linear infinite;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: calc(var(--scroll-progress) * 100%);
+  z-index: 5;
+  background: linear-gradient(90deg, var(--accent-dark), #f7b267, var(--accent));
+  box-shadow: 0 6px 18px rgba(217, 93, 57, 0.28);
 }
 
 .ambient {
@@ -99,6 +114,37 @@ body::before {
   height: 14rem;
   background: rgba(217, 93, 57, 0.14);
   animation-duration: 20s;
+}
+
+.ribbon {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.2;
+  filter: blur(0.2px);
+  transform: translateY(var(--scroll-shift)) rotate(var(--scroll-tilt));
+}
+
+.ribbon-one,
+.ribbon-two {
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(217, 93, 57, 0.24), transparent);
+}
+
+.ribbon-one {
+  top: 14%;
+  left: -8%;
+  width: 36rem;
+  height: 2px;
+  animation: sweep 14s linear infinite;
+}
+
+.ribbon-two {
+  bottom: 18%;
+  right: -10%;
+  width: 30rem;
+  height: 2px;
+  animation: sweep 18s linear infinite reverse;
 }
 
 .page-shell {
@@ -310,6 +356,17 @@ main {
 
 .location-panel {
   overflow: hidden;
+}
+
+.reveal-panel {
+  opacity: 0;
+  transform: translateY(42px) scale(0.985);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.reveal-panel.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .section-heading {
@@ -624,6 +681,23 @@ article p a:hover {
 
   50% {
     transform: translate3d(18px, -24px, 0) scale(1.08);
+  }
+}
+
+@keyframes sweep {
+  0% {
+    transform: translate3d(-4%, 0, 0) rotate(-10deg);
+    opacity: 0.12;
+  }
+
+  50% {
+    transform: translate3d(4%, -10px, 0) rotate(-8deg);
+    opacity: 0.28;
+  }
+
+  100% {
+    transform: translate3d(-4%, 0, 0) rotate(-10deg);
+    opacity: 0.12;
   }
 }
 
