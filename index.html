@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap"
     rel="stylesheet"
   >
   <link
@@ -20,9 +20,11 @@
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""
   >
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=17">
 </head>
 <body>
+  <div class="blueprint-grid" aria-hidden="true"></div>
+  <div class="noise-layer" aria-hidden="true"></div>
   <div class="ambient ambient-one" aria-hidden="true"></div>
   <div class="ambient ambient-two" aria-hidden="true"></div>
   <div class="ambient ambient-three" aria-hidden="true"></div>
@@ -30,47 +32,78 @@
   <div class="ambient ambient-five" aria-hidden="true"></div>
   <div class="ribbon ribbon-one" aria-hidden="true"></div>
   <div class="ribbon ribbon-two" aria-hidden="true"></div>
+  <div class="geo geo-a" aria-hidden="true"></div>
+  <div class="geo geo-b" aria-hidden="true"></div>
+  <div class="geo geo-c" aria-hidden="true"></div>
   <div class="scroll-progress" aria-hidden="true"></div>
   <div class="page-shell">
     <header class="hero">
-      <p class="eyebrow">MiTSA Events Presents</p>
-      <h1>Pub Crawl 2026</h1>
-      <p class="hero-copy">
-        One ticket. Multiple venues. A properly planned night out with your crowd.
-      </p>
+      <div class="hero-layout">
+        <div class="hero-copy-block">
+          <p class="eyebrow">MiTSA Events Presents</p>
+          <h1>Pub Crawl 2026</h1>
+          <p class="hero-copy">
+            One ticket. Multiple venues. A properly planned night out with your crowd.
+          </p>
 
-      <div class="hero-card">
-        <div class="detail-grid">
-          <div>
-            <p class="detail-label">Date</p>
-            <p class="detail-value">Saturday, 25 April 2026</p>
-          </div>
-          <div>
-            <p class="detail-label">Start Time</p>
-            <p class="detail-value">7:00 PM</p>
-          </div>
-          <div>
-            <p class="detail-label">Meeting Point</p>
-            <p class="detail-value">Adelaide CBD</p>
-          </div>
-          <div>
-            <p class="detail-label">Dress Code</p>
-            <p class="detail-value">Smart casual</p>
+          <div class="hero-card interactive-panel">
+            <div class="detail-grid">
+              <div>
+                <p class="detail-label">Date</p>
+                <p class="detail-value">Saturday, 25 April 2026</p>
+              </div>
+              <div>
+                <p class="detail-label">Start Time</p>
+                <p class="detail-value">7:00 PM</p>
+              </div>
+              <div>
+                <p class="detail-label">Meeting Point</p>
+                <p class="detail-value">Adelaide CBD</p>
+              </div>
+              <div>
+                <p class="detail-label">Dress Code</p>
+                <p class="detail-value">Smart casual</p>
+              </div>
+            </div>
+
+            <div class="cta-row">
+              <a class="button button-primary" href="https://example.com/tickets" target="_blank" rel="noreferrer">
+                Grab Tickets
+              </a>
+              <a class="button button-secondary" href="#details">
+                See Event Details
+              </a>
+            </div>
+
+            <p class="micro-note">
+              Replace the ticket link in <code>index.html</code> before publishing.
+            </p>
           </div>
         </div>
 
-        <div class="cta-row">
-          <a class="button button-primary" href="https://example.com/tickets" target="_blank" rel="noreferrer">
-            Grab Tickets
-          </a>
-          <a class="button button-secondary" href="#details">
-            See Event Details
-          </a>
+        <div class="hero-scene interactive-panel" aria-hidden="true">
+          <div class="scene-label">Prototype Blueprint</div>
+          <div class="scene-ring"></div>
+          <div class="scene-ring scene-ring-two"></div>
+          <div class="scene-grid"></div>
+          <div class="scene-card scene-card-primary">
+            <span>VENUE SYSTEM</span>
+            <strong>04 Stops</strong>
+          </div>
+          <div class="scene-card scene-card-secondary">
+            <span>CHECK-IN</span>
+            <strong>Wristband Ready</strong>
+          </div>
+          <div class="scene-card scene-card-tertiary">
+            <span>STATUS</span>
+            <strong>Tickets Live</strong>
+          </div>
+          <div class="scene-pill scene-pill-one">18+</div>
+          <div class="scene-pill scene-pill-two">CBD</div>
+          <div class="scene-pill scene-pill-three">NIGHT RUN</div>
+          <div class="scene-orbit orbit-one"></div>
+          <div class="scene-orbit orbit-two"></div>
         </div>
-
-        <p class="micro-note">
-          Replace the ticket link in <code>index.html</code> before publishing.
-        </p>
       </div>
     </header>
 
