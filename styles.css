@@ -428,7 +428,7 @@ main {
   position: absolute;
   inset: auto auto 1.5rem 1.5rem;
   z-index: 1;
-  width: min(34rem, calc(100% - 3rem));
+  width: min(31rem, calc(100% - 3rem));
   padding: 1.5rem;
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -487,6 +487,7 @@ article p a:hover {
 .contact-list {
   display: grid;
   gap: 0.75rem;
+  margin-top: 0.25rem;
 }
 
 .contact-item {
@@ -499,6 +500,7 @@ article p a:hover {
   background: rgba(20, 33, 61, 0.04);
   border: 1px solid rgba(20, 33, 61, 0.08);
   transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+  min-height: 4.5rem;
 }
 
 .contact-item:hover {
@@ -511,17 +513,20 @@ article p a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   flex: 0 0 auto;
   border-radius: 50%;
   background: rgba(217, 93, 57, 0.14);
   color: var(--accent-dark);
+  overflow: hidden;
 }
 
 .contact-icon svg {
-  width: 1.2rem;
-  height: 1.2rem;
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: 0 0 auto;
   fill: currentColor;
 }
 
@@ -529,6 +534,7 @@ article p a:hover {
   display: grid;
   gap: 0.1rem;
   min-width: 0;
+  flex: 1 1 auto;
 }
 
 .contact-label {
@@ -540,10 +546,11 @@ article p a:hover {
 }
 
 .contact-value {
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: var(--ink);
   overflow-wrap: anywhere;
+  line-height: 1.35;
 }
 
 .footer {
