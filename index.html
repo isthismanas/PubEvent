@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="ambient ambient-three" aria-hidden="true"></div>
   <div class="page-shell">
     <header class="hero">
       <p class="eyebrow">MiTSA Events Presents</p>
@@ -99,19 +102,21 @@
           <h2>Know where the night starts.</h2>
         </div>
 
-        <div class="location-card">
-          <div class="location-visual" aria-hidden="true">
-            <div class="map-dot"></div>
-            <div class="map-line map-line-one"></div>
-            <div class="map-line map-line-two"></div>
-            <div class="map-line map-line-three"></div>
-          </div>
+        <div class="location-map-card interactive-panel">
+          <iframe
+            class="location-embed"
+            title="Map showing EL Mexicano Kitchen & Bar"
+            src="https://www.google.com/maps?q=EL%20Mexicano%20Kitchen%20%26%20Bar%2C%20Adelaide&z=17&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
 
-          <div class="location-copy">
-            <h3>Event Location</h3>
+          <div class="location-overlay">
+            <p class="location-tag">Starting Venue</p>
+            <h3>EL Mexicano Kitchen &amp; Bar</h3>
             <p>
-              Add the exact venue name or meeting point here so people know where to arrive before
-              the crawl begins.
+              290 Rundle Street, Adelaide SA 5000. Use the map to get your bearings, then tap
+              through for full directions in Google Maps.
             </p>
             <a
               class="button button-primary"
@@ -153,5 +158,32 @@
       <a href="https://example.com/tickets" target="_blank" rel="noreferrer">Ticket link</a>
     </footer>
   </div>
+
+  <script>
+    const root = document.documentElement;
+    const panels = document.querySelectorAll(".interactive-panel");
+
+    window.addEventListener("pointermove", (event) => {
+      const x = (event.clientX / window.innerWidth) * 100;
+      const y = (event.clientY / window.innerHeight) * 100;
+      root.style.setProperty("--pointer-x", `${x}%`);
+      root.style.setProperty("--pointer-y", `${y}%`);
+    });
+
+    panels.forEach((panel) => {
+      panel.addEventListener("pointermove", (event) => {
+        const rect = panel.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width - 0.5) * 8;
+        const y = ((event.clientY - rect.top) / rect.height - 0.5) * -8;
+        panel.style.setProperty("--tilt-x", `${y}deg`);
+        panel.style.setProperty("--tilt-y", `${x}deg`);
+      });
+
+      panel.addEventListener("pointerleave", () => {
+        panel.style.setProperty("--tilt-x", "0deg");
+        panel.style.setProperty("--tilt-y", "0deg");
+      });
+    });
+  </script>
 </body>
 </html>
