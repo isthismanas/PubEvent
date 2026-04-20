@@ -564,6 +564,15 @@ h3 {
   background: var(--paper-strong);
 }
 
+.button-small {
+  min-height: auto;
+  margin-top: 0.9rem;
+  padding: 0.55rem 1rem;
+  border-width: 2px;
+  font-size: 0.92rem;
+  box-shadow: 3px 3px 0 rgba(18, 32, 67, 0.16);
+}
+
 .micro-note {
   margin: 1rem 0 0;
   color: var(--ink-soft);
