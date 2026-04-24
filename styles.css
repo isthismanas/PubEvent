@@ -702,11 +702,16 @@ main {
   animation: halo-pulse 2s ease-out infinite;
 }
 
+.venue-marker-start::before {
+  background: rgba(255, 204, 62, 0.22);
+  border-color: rgba(255, 204, 62, 0.58);
+}
+
 .venue-marker span {
   position: relative;
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
   background: var(--accent);
@@ -715,15 +720,22 @@ main {
   animation: pin-bob 1.8s ease-in-out infinite;
 }
 
-.venue-marker span::after {
-  content: "";
+.venue-marker-start span {
+  background: var(--accent-bright);
+}
+
+.venue-marker b {
   position: absolute;
-  top: 7px;
-  left: 7px;
-  width: 12px;
-  height: 12px;
+  inset: 5px;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
   background: var(--paper-strong);
+  color: var(--line);
+  font-family: "Chivo Mono", monospace;
+  font-size: 0.78rem;
+  line-height: 1;
+  transform: rotate(45deg);
 }
 
 .location-overlay {
@@ -765,6 +777,22 @@ main {
 
 .location-overlay .button {
   margin-top: 1rem;
+}
+
+.route-list {
+  display: grid;
+  gap: 0.4rem;
+  margin: 1rem 0 0;
+  padding-left: 1.2rem;
+  color: rgba(255, 250, 241, 0.9);
+  font-family: "Chivo Mono", monospace;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.route-list li::marker {
+  color: var(--accent-bright);
+  font-weight: 700;
 }
 
 article p {

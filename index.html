@@ -137,20 +137,27 @@
           <div
             class="location-embed"
             id="venue-map"
-            aria-label="Interactive map showing EL Mexicano Kitchen & Bar"
+            aria-label="Interactive pub crawl route map from The Austral to Crown & Anchor Hotel"
           ></div>
 
           <div class="location-overlay">
             <p class="location-tag">Starting Venue</p>
             <h2>Know where the night starts.</h2>
-            <h3>EL Mexicano Kitchen &amp; Bar</h3>
+            <h3>The Austral</h3>
             <p>
-              290 Rundle Street, Adelaide SA 5000. Use the map to get your bearings, then tap
-              through for full directions in Google Maps.
+              Start at 205 Rundle Street, then follow the numbered pins through Exeter Hotel,
+              The Elephant, The Stag, and Crown &amp; Anchor.
             </p>
+            <ol class="route-list" aria-label="Planned pub crawl route">
+              <li>The Austral</li>
+              <li>Exeter Hotel</li>
+              <li>The Elephant British Pub</li>
+              <li>The Stag Public House</li>
+              <li>Crown &amp; Anchor Hotel</li>
+            </ol>
             <a
               class="button button-primary"
-              href="https://maps.app.goo.gl/e7KBnF5Jq13p982k9"
+              href="https://www.google.com/maps/search/?api=1&query=The%20Austral%20205%20Rundle%20Street%20Adelaide"
               target="_blank"
               rel="noreferrer"
             >
@@ -242,8 +249,35 @@
     const root = document.documentElement;
     const panels = document.querySelectorAll(".interactive-panel");
     const revealPanels = document.querySelectorAll(".reveal-panel");
-    const venueCoords = [-34.9247174, 138.6021924];
-    const displayCenter = [-34.9247174, 138.6004];
+    const routeVenues = [
+      {
+        name: "The Austral",
+        address: "205 Rundle Street, Adelaide SA 5000",
+        coords: [-34.9227415, 138.6073696],
+      },
+      {
+        name: "Exeter Hotel",
+        address: "246 Rundle Street, Adelaide SA 5000",
+        coords: [-34.922294, 138.6087659],
+      },
+      {
+        name: "The Elephant British Pub",
+        address: "1 Cinema Place, Adelaide SA 5000",
+        coords: [-34.9218898, 138.6090118],
+      },
+      {
+        name: "The Stag Public House",
+        address: "299 Rundle Street, Adelaide SA 5000",
+        coords: [-34.922592, 138.6106016],
+      },
+      {
+        name: "Crown & Anchor Hotel",
+        address: "196 Grenfell Street, Adelaide SA 5000",
+        coords: [-34.9236854, 138.6084748],
+      },
+    ];
+    const routeCoords = routeVenues.map((venue) => venue.coords);
+    const displayCenter = [-34.92292, 138.60888];
     const venueMap = L.map("venue-map", {
       zoomControl: false,
       scrollWheelZoom: true,
@@ -256,20 +290,48 @@
       attribution: '&copy; OpenStreetMap contributors',
     }).addTo(venueMap);
 
-    const venueIcon = L.divIcon({
-      className: "venue-marker",
-      html: "<span></span>",
-      iconSize: [28, 28],
-      iconAnchor: [14, 28],
-    });
+    L.polyline(routeCoords, {
+      color: "#122043",
+      weight: 6,
+      opacity: 0.9,
+      lineCap: "round",
+      lineJoin: "round",
+    }).addTo(venueMap);
 
-    const marker = L.marker(venueCoords, { icon: venueIcon, zIndexOffset: 1000 })
-      .addTo(venueMap);
+    L.polyline(routeCoords, {
+      color: "#ffcc3e",
+      weight: 3,
+      opacity: 0.95,
+      dashArray: "10 12",
+      lineCap: "round",
+      lineJoin: "round",
+    }).addTo(venueMap);
+
+    routeVenues.forEach((venue, index) => {
+      const venueIcon = L.divIcon({
+        className: `venue-marker${index === 0 ? " venue-marker-start" : ""}`,
+        html: `<span><b>${index + 1}</b></span>`,
+        iconSize: [34, 34],
+        iconAnchor: [17, 34],
+      });
+
+      L.marker(venue.coords, {
+        icon: venueIcon,
+        zIndexOffset: 1000 + index,
+      })
+        .addTo(venueMap)
+        .bindPopup(`<strong>${index + 1}. ${venue.name}</strong><br>${venue.address}`);
+    });
 
     L.control.zoom({ position: "topright" }).addTo(venueMap);
     window.addEventListener("load", () => {
       venueMap.invalidateSize();
-      venueMap.setView(displayCenter, 17, { animate: false });
+      venueMap.fitBounds(routeCoords, {
+        animate: false,
+        maxZoom: 17,
+        paddingTopLeft: [24, 80],
+        paddingBottomRight: [280, 160],
+      });
     });
 
     window.addEventListener("pointermove", (event) => {
