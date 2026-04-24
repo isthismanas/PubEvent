@@ -324,14 +324,25 @@
     });
 
     L.control.zoom({ position: "topright" }).addTo(venueMap);
-    window.addEventListener("load", () => {
-      venueMap.invalidateSize();
+
+    const fitVenueRoute = () => {
+      const compactLayout = window.matchMedia("(max-width: 720px)").matches;
       venueMap.fitBounds(routeCoords, {
         animate: false,
         maxZoom: 17,
-        paddingTopLeft: [24, 80],
-        paddingBottomRight: [280, 160],
+        paddingTopLeft: compactLayout ? [36, 96] : [520, 96],
+        paddingBottomRight: compactLayout ? [36, 220] : [72, 120],
       });
+    };
+
+    window.addEventListener("load", () => {
+      venueMap.invalidateSize();
+      fitVenueRoute();
+    });
+
+    window.addEventListener("resize", () => {
+      venueMap.invalidateSize();
+      fitVenueRoute();
     });
 
     window.addEventListener("pointermove", (event) => {
